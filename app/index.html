@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>System Information</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular/angular-route.min.js"></script>
+  </head>
+  
+  <body>
+
+    <div class="container" ng-controller="SysInfosCtrl">
+
+        
+
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Overview</h2>
+                <dl>
+                    <dt>Hostname</dt>
+                    <dd>{{sysinfos.hostname}}</dd>
+                    <dt>OS Name</dt>
+                    <dd>{{sysinfos.osName}}</dd>
+                    <dt>Uptime</dt>
+                    <dd>{{sysinfos.uptime.hours}} hours, {{sysinfos.uptime.minutes}} minutes and {{sysinfos.uptime.seconds}} seconds</dd>
+                    <dt>Load Average</dt>
+                    <dd>{{sysinfos.loadAvg[0]}}, {{sysinfos.loadAvg[1]}}, {{sysinfos.loadAvg[2]}}</dd>
+                </dl>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Memory</h2>
+                <div class="col-md-4">
+                    <memory meminfo-use="{{sysinfos.memory.use}}" meminfo-free="{{sysinfos.memory.free}}" meminfo-total="{{sysinfos.memory.total}}" meminfo-unit="{{sysinfos.memory.unit}}"></memory>
+                </div>
+                <div class="col-md-6">
+                    <dl class="text-right">
+                        <dt>Used</dt>
+                        <dd>{{sysinfos.memory.use}} {{sysinfos.memory.unit}}</dd>
+                        <dt>Free</dt>
+                        <dd>{{sysinfos.memory.free}} {{sysinfos.memory.unit}}</dd>
+                        <dt>Total</dt>
+                        <dd>{{sysinfos.memory.total}} {{sysinfos.memory.unit}}</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <h2>Disk</h2>
+                <div class="col-md-4">
+                    <disk diskinfo-free="{{diskinfos.free}}" diskinfo-use="{{diskinfos.use}}" diskinfo-total="{{diskinfos.total}}" diskinfo-unit="{{sysinfos.memory.unit}}"></disk>
+                </div>
+                <div class="col-md-6">
+                   <dl class="text-right">
+                        <dt>Used</dt>
+                        <dd>{{diskinfos.use}} {{diskinfos.unit}}</dd>
+                        <dt>Free</dt>
+                        <dd>{{diskinfos.free}} {{diskinfos.unit}}</dd>
+                        <dt>Total</dt>
+                        <dd>{{diskinfos.total}} {{diskinfos.unit}}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>CPUs</h2>
+                <div class="col-md-3" ng-repeat="cpu in sysinfos.cpus" >
+                    <cpu cpuinfo-user="{{cpu.times.user}}" cpuinfo-idle="{{cpu.times.idle}}" cpuinfo-sys="{{cpu.times.sys}}" cpu-speed="{{cpu.speed}}" cpu-model="{{cpu.model}}" cpu-number="{{$index}}"></cpu>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+
+    <script src="lib/jquery/jquery-2.0.3.min.js"></script>
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
+    <script src="lib/chartjs/Chart.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/services.js"></script>
+  </body>
+</html>
