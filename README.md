@@ -13,7 +13,8 @@ Built with AngularJS and Node.js
 Get the sources with `git clone https://github.com/kdelemme/angularjs-nodejs-sysinfo.git`
 
 Install the npm dependencies: `cd api`
-then, `npm install express`
+
+Then, `npm install express diskspace`
 
 ## Run
 
