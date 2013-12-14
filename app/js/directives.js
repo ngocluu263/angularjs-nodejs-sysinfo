@@ -32,18 +32,15 @@ appDirectives.directive('cpu', function($timeout) {
 				$timeout(function () {
 					var data = [
 						{
-							value: Math.ceil(attrs.cpuinfoUser),
-							color:"#D4CCC5"
+							value: Math.ceil(attrs.cpuinfoUsage),
+							color: "#F7464A"
 						},
 						{
-							value: Math.ceil(attrs.cpuinfoSys),
-							color:"#949FB1"
-						},
-						{
-							value : Math.ceil(attrs.cpuinfoIdle),
-							color : "#4D5360"
+							value: Math.ceil(100 - attrs.cpuinfoUsage),
+							color: "#4D5360"
 						}
 					]
+					console.log(data);
 					var ctx = element[0].firstChild.getContext("2d");
 					new Chart(ctx).Doughnut(data);
 				}, 0);

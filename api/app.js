@@ -37,10 +37,7 @@ app.get('/diskinfos', function(req, res) {
     });
 });
 
-console.log('[SYSDIAG] Starting... OK');
-app.listen(3000);
-
-var getSysInfos = function() {
+function getSysInfos() {
     var sysinfos = {};
 
     sysinfos.hostname = os.hostname();
@@ -63,7 +60,50 @@ var getSysInfos = function() {
     sysinfos.memory.use = Math.round((sysinfos.memory.total - sysinfos.memory.free) * 100) / 100;
     sysinfos.memory.unit = "Mo";
 
-    sysinfos.cpus = os.cpus();
+    sysinfos.cpus = computeCpuInfo();    
 
     return sysinfos;
 }
+
+/* CPUs */
+var firstCpuMeasures = getCpuInfo();
+
+function getCpuInfo() {
+    var cpus = os.cpus();
+    var cpuArr = [];
+
+    for (var i=0, len=cpus.length; i<len; i++) {
+        var cpu = {};
+        cpu.ticks = 0;
+        cpu.idle = 0;
+        cpu.model = cpus[i].model;
+        cpu.speed = cpus[i].speed;
+
+        for (timeType in cpus[i].times) {
+            cpu.ticks += cpus[i].times[timeType];
+        }
+
+        cpu.idle = cpus[i].times.idle;
+
+        cpuArr.push(cpu);
+    }
+
+    return cpuArr;
+}
+
+function computeCpuInfo() {
+    currentCpuMeasures = getCpuInfo();
+
+    for (var i=0, len=currentCpuMeasures.length; i<len; i++) {
+
+        var idleDifference = currentCpuMeasures[i].idle - firstCpuMeasures[i].idle;
+        var totalDifference = currentCpuMeasures[i].ticks - firstCpuMeasures[i].ticks;
+
+        currentCpuMeasures[i].usage = 100 - ~~(100 * idleDifference / totalDifference);
+    }
+
+    return currentCpuMeasures;
+}
+
+console.log('[SYSDIAG] Starting... OK');
+app.listen(3000);

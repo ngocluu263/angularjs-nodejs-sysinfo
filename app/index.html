@@ -75,7 +75,7 @@
             <div class="col-md-12">
                 <h2>CPUs</h2>
                 <div class="col-md-3" ng-repeat="cpu in sysinfos.cpus" >
-                    <cpu cpuinfo-user="{{cpu.times.user}}" cpuinfo-idle="{{cpu.times.idle}}" cpuinfo-sys="{{cpu.times.sys}}" cpu-speed="{{cpu.speed}}" cpu-model="{{cpu.model}}" cpu-number="{{$index}}"></cpu>
+                    <cpu cpuinfo-usage="{{cpu.usage}}" cpu-speed="{{cpu.speed}}" cpu-model="{{cpu.model}}" cpu-number="{{$index}}"></cpu>
                 </div>
             </div>
         </div>
