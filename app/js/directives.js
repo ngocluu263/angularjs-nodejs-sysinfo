@@ -15,7 +15,7 @@ appDirectives.directive('memory', function($timeout) {
 							color : "#4D5360"
 						}
 					]
-					var ctx = document.getElementById("canvas-memory").getContext("2d");
+					var ctx = element[0].firstChild.getContext("2d");
 					new Chart(ctx).Doughnut(data);
 				}, 0);
 			}, 0);
@@ -71,7 +71,7 @@ appDirectives.directive('disk', function($timeout) {
 							color:"#4D5360"
 						}
 					]
-					var ctx = document.getElementById("canvas-disk").getContext("2d");
+					var ctx = element[0].firstChild.getContext("2d");
 					new Chart(ctx).Doughnut(data);
 				}, 0);
 
