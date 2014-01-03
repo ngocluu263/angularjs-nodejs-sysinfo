@@ -52,3 +52,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 [screenshot]: http://imageshack.com/a/img32/3924/8n5o.png
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kdelemme/angularjs-nodejs-sysinfo/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
