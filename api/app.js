@@ -45,7 +45,8 @@ function getSysInfos() {
 
     sysinfos.uptime = {};
     var uptime = os.uptime();
-    sysinfos.uptime.hours = Math.floor(uptime / (60*60));
+    sysinfos.uptime.days = Math.floor(uptime / (60*60*24));
+    sysinfos.uptime.hours = Math.floor((uptime % (60*60*24)) / (60*60));
     sysinfos.uptime.minutes = Math.floor((uptime % (60*60)) / 60);
     sysinfos.uptime.seconds = Math.ceil((uptime % (60*60)) % 60);
 
@@ -67,6 +68,14 @@ function getSysInfos() {
 
 /* CPUs */
 var firstCpuMeasures = getCpuInfo();
+var tempCpuMeasures = getCpuInfo();
+
+setInterval(updateFirstCpuMeasures, 5000);
+
+function updateFirstCpuMeasures() {
+    firstCpuMeasures = tempCpuMeasures;
+    tempCpuMeasures = getCpuInfo();
+}
 
 function getCpuInfo() {
     var cpus = os.cpus();
