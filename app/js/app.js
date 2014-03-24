@@ -9,3 +9,7 @@ var appServices = angular.module('appServices', []);
 var appDirectives = angular.module('appDirectives', []);
 
 var appFilters = angular.module('appFilters', []);
+
+var options = {};
+options.api = {};
+options.api.base_url = 'http://localhost:3003';

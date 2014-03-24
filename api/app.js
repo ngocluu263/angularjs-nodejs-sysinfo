@@ -7,9 +7,6 @@ var express = require('express')
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.logger());
-app.use(express.cookieParser());
-app.use(express.methodOverride());
-app.use(express.session({ secret: 'af5d8ltLowdfDic24aQsPrfl1ds78dkjf5szSDdzge5' }));
 
 
 app.all('*', function(req, res, next) {
@@ -114,5 +111,5 @@ function computeCpuInfo() {
     return currentCpuMeasures;
 }
 
-console.log('[SYSDIAG] Starting... OK');
-app.listen(3000);
+console.log('API started on port 3003');
+app.listen(3003);
