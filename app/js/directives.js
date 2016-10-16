@@ -41,7 +41,7 @@ appDirectives.directive('cpu', function($timeout) {
 							color: "#4D5360"
 						}
 					]
-					console.log(data);
+					//console.log(data);
 					var ctx = element[0].firstChild.getContext("2d");
 					new Chart(ctx).Doughnut(data);
 				}, 0);
