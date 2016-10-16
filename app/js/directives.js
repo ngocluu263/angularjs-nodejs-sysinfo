@@ -16,6 +16,7 @@ appDirectives.directive('memory', function($timeout) {
 						}
 					]
 					var ctx = element[0].firstChild.getContext("2d");
+					console.log(element[0])
 					new Chart(ctx).Doughnut(data);
 				}, 0);
 			}, 0);
